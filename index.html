@@ -1,0 +1,671 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fyy Community Key</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --purple: #942cff;
+    --light-purple: #d19aff;
+    --dark: #050208;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    overflow-x: hidden;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(128,35,255,.23), transparent 30%),
+        radial-gradient(circle at 85% 85%, rgba(190,65,255,.18), transparent 30%),
+        linear-gradient(135deg, #020104, #10051c 50%, #020104);
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.grid {
+    position: absolute;
+    inset: -50%;
+    opacity: .12;
+    background-image:
+        linear-gradient(rgba(172,84,255,.45) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(172,84,255,.45) 1px, transparent 1px);
+    background-size: 55px 55px;
+    transform: perspective(600px) rotateX(60deg);
+    animation: gridMove 12s linear infinite;
+}
+
+@keyframes gridMove {
+    from { background-position: 0 0; }
+    to { background-position: 0 110px; }
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(5px);
+}
+
+.orb1 {
+    width: 350px;
+    height: 350px;
+    left: -130px;
+    top: -120px;
+    background: radial-gradient(circle, #922cff, transparent 70%);
+    animation: orb1 9s ease-in-out infinite;
+}
+
+.orb2 {
+    width: 400px;
+    height: 400px;
+    right: -160px;
+    bottom: -170px;
+    background: radial-gradient(circle, #6917ff, transparent 70%);
+    animation: orb2 11s ease-in-out infinite;
+}
+
+@keyframes orb1 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(100px,80px) scale(1.2); }
+}
+
+@keyframes orb2 {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    50% { transform: translate(-90px,-70px) scale(1.2); }
+}
+
+/* FLOATING PARTICLES */
+
+.particles span {
+    position: absolute;
+    bottom: -20px;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #d19aff;
+    box-shadow: 0 0 10px #a34aff, 0 0 20px #8b2cff;
+    animation: particleUp linear infinite;
+}
+
+.particles span:nth-child(1) { left: 5%; animation-duration: 8s; }
+.particles span:nth-child(2) { left: 16%; animation-duration: 11s; animation-delay: 2s; }
+.particles span:nth-child(3) { left: 28%; animation-duration: 9s; animation-delay: 1s; }
+.particles span:nth-child(4) { left: 39%; animation-duration: 12s; }
+.particles span:nth-child(5) { left: 53%; animation-duration: 8s; animation-delay: 3s; }
+.particles span:nth-child(6) { left: 67%; animation-duration: 10s; }
+.particles span:nth-child(7) { left: 80%; animation-duration: 9s; animation-delay: 2s; }
+.particles span:nth-child(8) { left: 93%; animation-duration: 12s; }
+
+@keyframes particleUp {
+    0% {
+        transform: translateY(0) translateX(0) scale(.4);
+        opacity: 0;
+    }
+    15% { opacity: 1; }
+    50% { transform: translateY(-50vh) translateX(35px) scale(1); }
+    85% { opacity: 1; }
+    100% {
+        transform: translateY(-115vh) translateX(-30px) scale(1.4);
+        opacity: 0;
+    }
+}
+
+/* SHOOTING LIGHTS */
+
+.shooting-star {
+    position: absolute;
+    width: 130px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #d8a0ff, transparent);
+    opacity: 0;
+    transform: rotate(-35deg);
+    animation: shooting 7s linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+    top: 10%;
+    left: -150px;
+}
+
+.shooting-star:nth-child(2) {
+    top: 45%;
+    left: -200px;
+    animation-delay: 3.5s;
+}
+
+@keyframes shooting {
+    0% {
+        transform: translate(0,0) rotate(-35deg);
+        opacity: 0;
+    }
+    8% { opacity: 1; }
+    25% {
+        transform: translate(700px,450px) rotate(-35deg);
+        opacity: 0;
+    }
+    100% { opacity: 0; }
+}
+
+/* MAIN MENU */
+
+.card {
+    position: relative;
+    z-index: 5;
+    width: min(100%, 510px);
+    padding: 42px 32px 30px;
+    border-radius: 30px;
+    background: linear-gradient(145deg, rgba(29,12,47,.92), rgba(5,2,10,.95));
+    border: 1px solid rgba(190,112,255,.28);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    box-shadow:
+        0 0 35px rgba(130,30,255,.2),
+        0 0 100px rgba(120,25,255,.09),
+        inset 0 0 40px rgba(190,90,255,.035);
+    animation: appear 1s ease-out, floatCard 5s ease-in-out 1s infinite;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 30px;
+    padding: 1px;
+    background: linear-gradient(120deg, transparent, #bd6aff, transparent, #7c22ff, transparent);
+    background-size: 300% 300%;
+    animation: borderFlow 5s linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+}
+
+@keyframes borderFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(.94);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes floatCard {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -6px; }
+}
+
+/* LOGO F */
+
+.logo-area {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(190,105,255,.55);
+    box-shadow: 0 0 20px rgba(145,45,255,.35), inset 0 0 20px rgba(145,45,255,.15);
+    animation: ringRotate 8s linear infinite;
+}
+
+.logo-ring::before,
+.logo-ring::after {
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #e0adff;
+    box-shadow: 0 0 12px #bf64ff, 0 0 25px #8e2dff;
+}
+
+.logo-ring::before {
+    top: -4px;
+    left: 50%;
+}
+
+.logo-ring::after {
+    right: 12%;
+    bottom: 14%;
+}
+
+.logo {
+    width: 86px;
+    height: 86px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 23px;
+    background: linear-gradient(135deg, #bd62ff, #751dff 55%, #4710aa);
+    transform: rotate(-5deg);
+    box-shadow:
+        0 0 25px rgba(158,53,255,.7),
+        0 0 60px rgba(110,20,255,.35),
+        inset 0 1px 1px rgba(255,255,255,.4);
+    animation: logoFloat 3s ease-in-out infinite, logoGlow 2.5s ease-in-out infinite;
+}
+
+.logo::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,.3);
+}
+
+.logo span {
+    position: relative;
+    z-index: 2;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 56px;
+    font-weight: 900;
+    transform: rotate(5deg);
+    color: white;
+    text-shadow: 0 0 5px white, 0 0 15px #e1a5ff, 0 0 35px #a63cff, 0 0 60px #7620ff;
+}
+
+@keyframes ringRotate {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(-2deg) translateY(-4px); }
+}
+
+@keyframes logoGlow {
+    50% {
+        box-shadow: 0 0 35px rgba(190,80,255,.95), 0 0 80px rgba(115,25,255,.55);
+    }
+}
+
+/* TITLE */
+
+.title {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(24px, 7vw, 36px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.2;
+    background: linear-gradient(90deg, #852cff, #ffffff, #c55dff, #7725ff, #852cff);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: titleShine 4s linear infinite;
+}
+
+@keyframes titleShine {
+    to { background-position: 300% center; }
+}
+
+.subtitle {
+    margin-top: 12px;
+    text-align: center;
+    color: #aa9ab8;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+/* KEY INPUT */
+
+.label {
+    margin: 30px 0 10px 4px;
+    color: #cdbbd8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -1px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #7520ff, #ce6dff, #7520ff);
+    box-shadow: 0 0 12px #a73cff;
+    transform: translateX(-50%);
+    transition: .4s;
+}
+
+.input-wrap:focus-within::after {
+    width: 90%;
+}
+
+input {
+    width: 100%;
+    height: 58px;
+    padding: 0 17px;
+    outline: none;
+    border-radius: 15px;
+    border: 1px solid rgba(187,113,255,.22);
+    background: rgba(255,255,255,.045);
+    color: white;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    transition: .3s;
+}
+
+input:focus {
+    border-color: #a84dff;
+    background: rgba(135,35,255,.07);
+    box-shadow: 0 0 0 3px rgba(143,45,255,.08), 0 0 25px rgba(132,36,255,.18);
+}
+
+input::selection {
+    background: #8c2cff;
+    color: white;
+}
+
+/* COPY KEY BUTTON ONLY */
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 17px;
+}
+
+.copy {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 56px;
+    border-radius: 15px;
+    cursor: pointer;
+    border: 1px solid rgba(215,150,255,.4);
+    background: linear-gradient(135deg, #7c21ff, #b649ff, #852bff);
+    background-size: 200% 200%;
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    box-shadow: 0 8px 25px rgba(125,30,255,.3), inset 0 1px rgba(255,255,255,.3);
+    animation: buttonGradient 4s ease infinite;
+    transition: transform .25s, box-shadow .25s, filter .25s;
+}
+
+.copy::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 75%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.4), transparent);
+    transform: skewX(-20deg);
+}
+
+.copy:hover::before {
+    animation: buttonShine .8s ease;
+}
+
+@keyframes buttonShine {
+    to { left: 150%; }
+}
+
+@keyframes buttonGradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+.copy:hover {
+    transform: translateY(-4px) scale(1.01);
+    filter: brightness(1.15);
+    box-shadow: 0 12px 35px rgba(145,40,255,.5), 0 0 25px rgba(175,85,255,.2);
+}
+
+.copy:active {
+    transform: scale(.96);
+}
+
+/* STATUS */
+
+.status {
+    min-height: 23px;
+    margin-top: 18px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.success {
+    color: #d4a0ff;
+    text-shadow: 0 0 10px #a844ff, 0 0 25px rgba(168,68,255,.6);
+    animation: statusPop .4s ease;
+}
+
+.error {
+    color: #ff6da9;
+    text-shadow: 0 0 12px rgba(255,50,140,.7);
+    animation: shake .35s ease;
+}
+
+@keyframes statusPop {
+    from { opacity: 0; transform: scale(.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+    25% { transform: translateX(-6px); }
+    50% { transform: translateX(6px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+/* FOOTER */
+
+.footer {
+    margin-top: 20px;
+    padding-top: 17px;
+    border-top: 1px solid rgba(255,255,255,.07);
+    text-align: center;
+    color: #665b6d;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+    .card {
+        padding: 34px 21px 27px;
+        border-radius: 25px;
+    }
+
+    .logo-area {
+        width: 105px;
+        height: 105px;
+    }
+
+    .logo {
+        width: 76px;
+        height: 76px;
+    }
+
+    .logo span {
+        font-size: 49px;
+    }
+
+    .title {
+        font-size: 24px;
+        letter-spacing: 1px;
+    }
+
+    input {
+        font-size: 11px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="grid"></div>
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="particles">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="shooting-star"></div>
+    <div class="shooting-star"></div>
+</div>
+
+<main class="card">
+
+    <div class="logo-area">
+        <div class="logo-ring"></div>
+        <div class="logo">
+            <span>F</span>
+        </div>
+    </div>
+
+    <h1 class="title">FYY COMMUNITY</h1>
+
+    <div class="subtitle">SECURE ACCESS SYSTEM</div>
+
+    <div class="label">YOUR ACCESS KEY</div>
+
+    <div class="input-wrap">
+        <input
+            id="keyInput"
+            type="text"
+            value="FyyCommunityKeyHsjeiVsjskeiiLaowheoNajsoeoUqowjdkowowo"
+            placeholder="Enter your key..."
+            autocomplete="off"
+            spellcheck="false"
+        >
+    </div>
+
+    <div class="buttons">
+        <button class="copy" onclick="copyKey()">COPY KEY</button>
+    </div>
+
+    <div id="status" class="status" aria-live="polite"></div>
+
+    <div class="footer">
+        FYY COMMUNITY • KEY SYSTEM
+    </div>
+
+</main>
+
+<script>
+const input = document.getElementById("keyInput");
+const statusMessage = document.getElementById("status");
+
+async function copyKey() {
+    const key = input.value;
+
+    if (!key) {
+        statusMessage.textContent = "PLEASE ENTER YOUR KEY";
+        statusMessage.className = "status error";
+        return;
+    }
+
+    try {
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(key);
+        } else {
+            input.focus();
+            input.select();
+            input.setSelectionRange(0, input.value.length);
+
+            const copied = document.execCommand("copy");
+
+            if (!copied) {
+                throw new Error("Copy failed");
+            }
+
+            input.setSelectionRange(0, 0);
+        }
+
+        statusMessage.textContent = "✓ KEY COPIED SUCCESSFULLY";
+        statusMessage.className = "status success";
+
+    } catch (error) {
+        input.focus();
+        input.select();
+
+        statusMessage.textContent = "SELECT THE KEY AND COPY IT";
+        statusMessage.className = "status error";
+    }
+}
+</script>
+
+</body>
+</html>
